@@ -1,0 +1,33 @@
+<div class="bs-example">
+	<span><img src="images/home.jpg" alt="BarclaysHome" /></span>
+	<div>
+	<br/>
+	<form name="login">
+		<div>
+			<span>Login</span><hr>
+			User id :<input type="text" ng-model="id" value="id" placeholder="user id" />
+			Password: <input type="password" ng-model="pass" value="pass" placeholder="password" />
+			<input type="submit" value="Login" ng-click="auth()" />
+		</div>
+		<hr>
+		<div ng-hide="activate"><span>aunthentication is successfull</span></div>
+		<hr>
+	</form>
+	<form name="vote">
+		<span>Please select</span>
+		<div>
+			<input type="radio" ng-model="option" value="option1">Option1
+			<input type="radio" ng-model="option" value="option2">Option2
+			<input type="radio" ng-model="option" value="option3">Option3
+			<input type="submit" value="Submit" ng-click="submitForm()" ng-disabled="activate"/>
+		</div>{{response}}
+		<hr>
+		<input type="button" value="total count" ng-click="getCount()"/>
+		<span>{{opt1Count}},</span>
+		<span>{{opt2Count}},</span>
+		<span>{{opt3Count}}</span>
+	</form>
+	<hr>
+	<!-- <item data-set="{name: 'foobar', active: true}"></item> -->
+	</div>
+</div>

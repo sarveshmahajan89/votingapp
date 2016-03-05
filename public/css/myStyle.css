@@ -1,0 +1,88 @@
+@CHARSET "ISO-8859-1";
+
+.header{
+width:1000px;
+height:50px;
+
+margin: 2px 70px 2px 150px;
+padding: 8px 2px 2px 15px;
+}
+
+.nav{
+width:1000px;
+height:40px;
+background-color:#F4F4F4;
+margin: 2px 70px 2px 150px;
+padding: 3px 2px 9px 15px;
+}
+
+.nav li{
+	list-style: none;
+    display: inline;
+    padding: 0px 40px 0px 2px;	
+}
+
+.nav li a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.nav li a:HOVER{
+	text-decoration:none;
+	color: white;
+	background-color:#01ADEF;
+	width:20px;
+	height:10px;
+	border: 2px solid #01ADEF;
+	border-radius:3px;	
+}
+.content{
+width:1000px;
+height:420px;
+border:1px solid #BCBCBC;
+border-radius:5px;
+margin: 2px 70px 2px 150px;
+padding: 8px 2px 2px 15px;
+}
+
+.footer{
+width:1000px;
+height:50px;
+border-top:1px solid #BCBCBC;
+border-bottom:1px solid grey;
+background-color:#F4F4F4;
+margin: 2px 70px 2px 150px;
+padding: 8px 2px 2px 15px;
+text-align: center;
+}
+
+table{
+	width:100%;
+	border: 1px solid #BCBCBC;
+}
+
+th{
+	background-color: #BCBCBC;
+}
+
+td{
+	text-align: center;
+}
+
+#tblTransactions  tr:nth-child(even) {background-color: lightblue }
+#tblTransactions  tr:nth-child(odd) {background-color: white }
+
+.message{
+	margin-top: 10px;
+}
+#show{
+	color: black;
+}
+
+h3{
+	color: #BCBCBC;
+}
+
+.setBox{
+	display:block;
+}
