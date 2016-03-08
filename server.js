@@ -50,7 +50,8 @@ app.post('/authenticate', function(req, res) {
 	console.log(pass);
 	//var readId = require('./idList.json');
 	var sendData = {
-			"status":false
+			"status":false,
+			"user":id
 		};
 
 	var readId = require('./idList.json');	
@@ -59,8 +60,9 @@ app.post('/authenticate', function(req, res) {
 		//console.log(readId[i].password);
 		if(id == readId[i].id && pass == readId[i].password) {
 			console.log('matched');
-			i=readId.length;
 			sendData.status = true;
+			//sendData.id = id;
+			i=readId.length;
 		}
 	}	
 	res.end(JSON.stringify(sendData));
@@ -81,39 +83,77 @@ app.get('/getcount', function(req, res) {
 
 app.post('/submitvote', function(req, res) {
 	console.log('inside post');
-	var optionData = (req.body.option); 
+	var optionData = (req.body.option);
+	var user = (req.body.user);
+
 	console.log(optionData);
+
+	var returnData = {
+		"option":optionData,
+		"status":false
+	};
+
 	var subData = {
-			"option":optionData
+			"option":optionData,
+			"user":user
 		};
-	res.end(optionData);
+	//res.end(optionData);
 
 	var readJson = require('./count.json');
-	console.log('reading done');
-	readJson.push(subData);
-	fs.writeFile('./count.json',JSON.stringify(readJson));
-	//
-	//res.end('investment banking barclays');
+	var count = 0;
+	//console.log('reading done');
+	//console.log(user);
+	for(var i=0;i<readJson.length;i++) {
+		//console.log(readJson[i].user);
+		if(user === readJson[i].user) {
+			 //console.log('login id matched');
+			// readJson.push(subData);
+			// fs.writeFile('./count.json',JSON.stringify(readJson));
+			i=readJson.length;
+			//res.end(returnData);
+		} else {
+			//console.log('other id from login');
+			count = count+1;
+		}
+	}	
+	if (count == readJson.length) {
+		//console.log('unique');
+		readJson.push(subData);
+		fs.writeFile('./count.json',JSON.stringify(readJson));
+		returnData.status = true;
+		//res.end(returnData);
+	}
+	res.end(JSON.stringify(returnData));
 });
+// app.post('/submitvote', function(req, res) {
+// 	console.log('inside post');
+// 	var optionData = (req.body.option);
+// 	var user = (req.body.user);
+
+// 	console.log(optionData);
+// 	var subData = {
+// 			"option":optionData,
+// 			"user":user
+// 		};
+// 	res.end(optionData);
+
+// 	var readJson = require('./count.json');
+// 	console.log('reading done');
+// 	readJson.push(subData);
+// 	fs.writeFile('./count.json',JSON.stringify(readJson));
+// });
 
 // login validation
 
-app.post('/submitvote', function(req, res) {
-	console.log('inside post');
-	var details = (req.body.login); 
-	console.log(details);
-	// var subData = {
-	// 		"option":optionData
-	// 	};
-	// res.end(optionData);
+// app.post('/submitvote', function(req, res) {
+// 	console.log('inside post');
+// 	var details = (req.body.login); 
+// 	console.log(details);
+// 	for(var i=0;i<readId.length;i++) {
 
-	// readId
-	for(var i=0;i<readId.length;i++) {
-
-	}
-	console.log('reading done');
-	readJson.push(subData);
-	fs.writeFile('./count.json',JSON.stringify(readJson));
-	//
-	//res.end('investment banking barclays');
-});
+// 	}
+// 	console.log('reading done');
+// 	readJson.push(subData);
+// 	fs.writeFile('./count.json',JSON.stringify(readJson));
+	
+// });
